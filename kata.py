@@ -10,7 +10,16 @@ def add(s):
 	pass
 
 class TestAdd(unittest.TestCase):
-	pass
+	def test_empty_input(self):
+		self.assertEqual(add(''), 0)
+
+	def test_single_num(self):
+		self.assertEqual(add('5'), 5)
+		self.assertEqual(add('-5'), -5)
+
+	def test_two_nums(self):
+		self.assertEqual(add('1,2'), 3)
+		self.assertEqual(add('1,-2'), -1)
 
 if __name__ == '__main__':
 	unittest.main()
