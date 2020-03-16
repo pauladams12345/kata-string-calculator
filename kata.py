@@ -10,13 +10,18 @@ import random
 # Returns:
 #	Sum of supplied numbers, or 0 if input is empty
 def add(s):
-	s = s.replace('\n',',')
+	if s[0:2] == '//':							# handle custom delimiter
+		custom_delimiter = s[2]
+		s = s[4:]
+		s = s.replace(custom_delimiter, ',')
 
-	if s == '':
+	s = s.replace('\n',',')						# handle '\n' delimiter
+	
+	if s == '':									# empty string returns 0
 		return 0
-	elif ',' not in s:
+	elif ',' not in s:							# single int
 		return int(s)
-	else:
+	else:										# multiple ints, split by ',' and sum
 		nums = s.split(',')
 		total = 0
 		for num in nums:
