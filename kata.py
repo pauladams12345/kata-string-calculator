@@ -1,7 +1,7 @@
 import unittest
 
-# Calculates the sum of up to two numbers. If no
-# numbers are supplied, returns 0
+# Calculates the sum of a string of integers of undefined
+# length. If no numbers are supplied, returns 0
 # Parameters:
 # 	s: a string of integers separated by a comma
 # Returns:
