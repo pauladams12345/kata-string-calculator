@@ -7,7 +7,7 @@ import random
 # Parameters:
 # 	s: a string of integers. Delimiters allowed by default: ',' and '\n'
 #	   Custom delimiters are allowed when the string begins as follows:
-#	   '//[delimiter]\n' Example: '//;\n1;2'
+#	   '//[delimiter]\n' Examples: '//[;]\n1;2' '//[***]\n1***2' 
 # Returns:
 #	Sum of supplied numbers, or 0 if input is empty. If negative values are
 #	present in the input, an exception will be raised.
