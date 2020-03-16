@@ -14,9 +14,10 @@ def add(s):
 		return int(s)
 	else:
 		nums = s.split(',')
-		num1 = int(nums[0])
-		num2 = int(nums[1])
-		return num1 + num2
+		total = 0
+		for num in nums:
+			total += int(num)
+		return total
 
 class TestAdd(unittest.TestCase):
 	def test_empty_input(self):
@@ -32,15 +33,15 @@ class TestAdd(unittest.TestCase):
 
 	def test_random_quantity_of_random_nums(self):
 		length = random.randint(0,10000)
-		sum = 0
+		total = 0
 		s = ""
 		for i in range(length):
 			num = random.randint(-1000,1000)
-			sum += num
+			total += num
 			s += str(num)
 			if i != length - 1:
 				 s += ","
-		self.assertEqual(add(s), sum)
+		self.assertEqual(add(s), total)
 
 if __name__ == '__main__':
 	unittest.main()
