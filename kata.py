@@ -2,13 +2,15 @@ import unittest
 import random
 
 # Calculates the sum of a string of integers of undefined
-# length. If no numbers are supplied, returns 0
+# length. If no numbers are supplied, returns 0. Negative values
+# are not allowed.
 # Parameters:
 # 	s: a string of integers. Delimiters allowed by default: ',' and '\n'
 #	   Custom delimiters are allowed when the string begins as follows:
 #	   '//[delimiter]\n' Example: '//;\n1;2'
 # Returns:
-#	Sum of supplied numbers, or 0 if input is empty
+#	Sum of supplied numbers, or 0 if input is empty. If negative values are
+#	present in the input, an exception will be raised.
 def add(s):
 	if s[0:2] == '//':							# handle custom delimiter
 		custom_delimiter = s[2]
