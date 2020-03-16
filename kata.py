@@ -53,5 +53,12 @@ class TestAdd(unittest.TestCase):
 					s += "\n"
 		self.assertEqual(add(s), total)
 
+	def test_custom_delimiter_only(self):
+		self.assertEqual(add('//;\n1;2;3'), 6)
+		self.assertEqual(add('//$\n1$2'), 3)
+
+	def test_custom_and_default_delimiters(self):
+		self.assertEqual(add('//;\n1,2\n3;4'), 10)
+
 if __name__ == '__main__':
 	unittest.main()
