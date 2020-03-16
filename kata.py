@@ -4,7 +4,7 @@ import random
 # Calculates the sum of a string of integers of undefined
 # length. If no numbers are supplied, returns 0
 # Parameters:
-# 	s: a string of integers separated by a comma
+# 	s: a string of integers separated by a comma or newline (\n)
 # Returns:
 #	Sum of supplied numbers, or 0 if input is empty
 def add(s):
