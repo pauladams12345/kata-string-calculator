@@ -7,7 +7,15 @@ import unittest
 # Returns:
 #	Sum of supplied numbers, or 0 if input is empty
 def add(s):
-	pass
+	if s == '':
+		return 0
+	elif ',' not in s:
+		return int(s)
+	else:
+		nums = s.split(',')
+		num1 = int(nums[0])
+		num2 = int(nums[1])
+		return num1 + num2
 
 class TestAdd(unittest.TestCase):
 	def test_empty_input(self):
