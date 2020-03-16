@@ -13,17 +13,23 @@ import random
 #	Sum of supplied numbers, or 0 if input is empty. If negative values are
 #	present in the input, an exception will be raised.
 def add(s):
-	if s[0:2] == '//':							# handle custom delimiter
-		custom_delimiter = ''
+	# Replace all delimiters with single commas and remove optional prefix
+	if s[0:2] == '//':
+		custom_delimiters = []					# gather all custom delimiters
 		i = 3
-		while s[i] != ']':
-			custom_delimiter += s[i]
-			i += 1
-		s = s[i+2:]
-		s = s.replace(custom_delimiter, ',')
-
-	s = s.replace('\n',',')				# handle '\n' delimiter
+		while s[i-1] != '\n':
+			delimiter = ''
+			while s[i] != ']':					# get an individual delimiter
+				delimiter += s[i]
+				i += 1
+			custom_delimiters.append(delimiter)
+			i += 2
+		s = s[i:]								# remove delimiter prefix from string, leaving just ints
+		for delimiter in custom_delimiters:		# replace custom delimiters with commas
+			s = s.replace(delimiter, ',')
+	s = s.replace('\n',',')				# replace '\n' delimiter with comma
 	
+	# Calculate sum
 	if s == '':							# empty string returns 0
 		return 0
 	else:								# 1+ ints, split by ',' and sum
