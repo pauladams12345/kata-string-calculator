@@ -17,18 +17,24 @@ def add(s):
 		s = s[4:]
 		s = s.replace(custom_delimiter, ',')
 
-	s = s.replace('\n',',')						# handle '\n' delimiter
+	s = s.replace('\n',',')				# handle '\n' delimiter
 	
-	if s == '':									# empty string returns 0
+	if s == '':							# empty string returns 0
 		return 0
-	elif ',' not in s:							# single int
-		return int(s)
-	else:										# multiple ints, split by ',' and sum
+	else:								# 1+ ints, split by ',' and sum
 		nums = s.split(',')
 		total = 0
-		for num in nums:
+		negatives = ''					# keep track of illegal negatives
+		for num in nums:				# sum up ints, and track negatives
+			if int(num) < 0:
+				negatives += num + ', '
 			total += int(num)
-		return total
+		
+		if negatives != '':				# if there were any negatives, raise exeption
+			negatives = negatives[:-2]	# remove trailing ', '
+			raise ValueError('Negative values are not allowed. Illegal values: ' + negatives)
+		else:
+			return total
 
 class TestAdd(unittest.TestCase):
 	def test_empty_input(self):
@@ -67,7 +73,7 @@ class TestAdd(unittest.TestCase):
 
 	def test_single_negative_value(self):
 		with self.assertRaisesRegex(ValueError \
-			, 'Negative value are not allowed. Illegal values: -1'):
+			, 'Negative values are not allowed. Illegal values: -1'):
 			add('-1')
 
 	def test_multiple_negative_values(self):
