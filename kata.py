@@ -8,6 +8,8 @@ import random
 # Returns:
 #	Sum of supplied numbers, or 0 if input is empty
 def add(s):
+	s = s.replace('\n',',')
+
 	if s == '':
 		return 0
 	elif ',' not in s:
