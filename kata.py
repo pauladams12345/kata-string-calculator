@@ -90,6 +90,12 @@ class TestAdd(unittest.TestCase):
 	def test_custom_long_and_default_delimiters(self):
 		self.assertEqual(add('//[***]\n1,2\n3***4'), 10)
 
+	def test_multiple_custom_delimiters_only(self):
+		self.assertEqual(add('//[;][***]\n1;2***3'), 6)
+
+	def test_multiple_custom_delimiters_and_default_delimiters(self):
+		self.assertEqual(add('//[;][***]\n1;2***3,4\n5'), 15)
+
 	def test_single_negative_value(self):
 		with self.assertRaisesRegex(ValueError \
 			, 'Negative values are not allowed. Illegal values: -1'):
