@@ -1,4 +1,5 @@
 import unittest
+import random
 
 # Calculates the sum of a string of integers of undefined
 # length. If no numbers are supplied, returns 0
@@ -28,6 +29,18 @@ class TestAdd(unittest.TestCase):
 	def test_two_nums(self):
 		self.assertEqual(add('1,2'), 3)
 		self.assertEqual(add('1,-2'), -1)
+
+	def test_random_quantity_of_random_nums(self):
+		length = random.randint(0,10000)
+		sum = 0
+		s = ""
+		for i in range(length):
+			num = random.randint(-1000,1000)
+			sum += num
+			s += str(num)
+			if i != length - 1:
+				 s += ","
+		self.assertEqual(add(s), sum)
 
 if __name__ == '__main__':
 	unittest.main()
