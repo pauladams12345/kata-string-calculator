@@ -27,12 +27,15 @@ class TestAdd(unittest.TestCase):
 		self.assertEqual(add('5'), 5)
 		self.assertEqual(add('-5'), -5)
 
-	def test_two_nums(self):
+	def test_two_nums_with_comma_separator(self):
 		self.assertEqual(add('1,2'), 3)
 		self.assertEqual(add('1,-2'), -1)
 
-	def test_random_quantity_of_random_nums(self):
-		length = random.randint(0,10000)
+	def test_two_nums_with_newline_separator(self):
+		self.assertEqual(add('1\n2'), 3)
+
+	def test_random_quantity_of_random_nums_with_either_separator(self):
+		length = random.randint(100,10000)
 		total = 0
 		s = ""
 		for i in range(length):
@@ -40,7 +43,10 @@ class TestAdd(unittest.TestCase):
 			total += num
 			s += str(num)
 			if i != length - 1:
-				 s += ","
+				if num % 2 == 0:
+					s += ","
+				else:
+					s += "\n"
 		self.assertEqual(add(s), total)
 
 if __name__ == '__main__':
