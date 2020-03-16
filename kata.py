@@ -72,12 +72,18 @@ class TestAdd(unittest.TestCase):
 					s += "\n"
 		self.assertEqual(add(s), total)
 
-	def test_custom_delimiter_only(self):
-		self.assertEqual(add('//;\n1;2;3'), 6)
-		self.assertEqual(add('//$\n1$2'), 3)
+	def test_custom_single_char_delimiter_only(self):
+		self.assertEqual(add('//[;]\n1;2;3'), 6)
+		self.assertEqual(add('//[$]\n1$2'), 3)
 
-	def test_custom_and_default_delimiters(self):
-		self.assertEqual(add('//;\n1,2\n3;4'), 10)
+	def test_custom_single_char_and_default_delimiters(self):
+		self.assertEqual(add('//[;]\n1,2\n3;4'), 10)
+
+	def test_custom_long_delimiter_only(self):
+		self.assertEqual(add('//[***]\n1***2***3'), 6)
+
+	def test_custom_long_and_default_delimiters(self):
+		self.assertEqual(add('//[***]\n1,2\n3***4'), 10)
 
 	def test_single_negative_value(self):
 		with self.assertRaisesRegex(ValueError \
