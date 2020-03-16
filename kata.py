@@ -28,7 +28,8 @@ def add(s):
 		for num in nums:				# sum up ints, and track negatives
 			if int(num) < 0:
 				negatives += num + ', '
-			total += int(num)
+			elif int(num) <= 1000:			# ignore values greater than 1000
+				total += int(num)
 		
 		if negatives != '':				# if there were any negatives, raise exeption
 			negatives = negatives[:-2]	# remove trailing ', '
