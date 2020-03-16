@@ -13,8 +13,12 @@ import random
 #	present in the input, an exception will be raised.
 def add(s):
 	if s[0:2] == '//':							# handle custom delimiter
-		custom_delimiter = s[2]
-		s = s[4:]
+		custom_delimiter = ''
+		i = 3
+		while s[i] != ']':
+			custom_delimiter += s[i]
+			i += 1
+		s = s[i+2:]
 		s = s.replace(custom_delimiter, ',')
 
 	s = s.replace('\n',',')				# handle '\n' delimiter
@@ -93,7 +97,7 @@ class TestAdd(unittest.TestCase):
 	def test_multiple_negative_values(self):
 		with self.assertRaisesRegex(ValueError \
 			, 'Negative values are not allowed. Illegal values: -4, -6, -8'):
-			add('//;\n1,2\n3;-4,5,-6,7,-8')
+			add('//[;]\n1,2\n3;-4,5,-6,7,-8')
 
 if __name__ == '__main__':
 	unittest.main()
