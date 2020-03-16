@@ -49,13 +49,20 @@ class TestAdd(unittest.TestCase):
 	def test_two_nums_with_newline_separator(self):
 		self.assertEqual(add('1\n2'), 3)
 
+	def test_exactly_1000(self):
+		self.assertEqual(add('1,1000'), 1001)
+
+	def test_num_greater_than_1000(self):
+		self.assertEqual(add('1,1001,1'), 2)
+
 	def test_random_quantity_of_random_nums_with_either_separator(self):
 		length = random.randint(100,10000)
 		total = 0
 		s = ""
 		for i in range(length):
-			num = random.randint(0,1000)
-			total += num
+			num = random.randint(0,2000)
+			if num <= 1000:
+				total += num
 			s += str(num)
 			if i != length - 1:
 				if num % 2 == 0:
