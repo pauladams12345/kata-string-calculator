@@ -3,7 +3,7 @@ import random
 
 # Calculates the sum of a string of integers of undefined
 # length. If no numbers are supplied, returns 0. Negative values
-# are not allowed.
+# are not allowed. Values >1000 are not added to the sum.
 # Parameters:
 # 	s: a string of integers. Delimiters allowed by default: ',' and '\n'
 #	   Custom delimiters are allowed when the string begins as follows:
